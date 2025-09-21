@@ -1,0 +1,197 @@
+/* Reset + Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* Hero Section */
+header {
+  background: linear-gradient(135deg, #0071c5, #004080);
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+header img {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+header h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #00aaff;
+  margin: 0.75rem auto;
+  border-radius: 2px;
+}
+
+header p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* Timeline Section */
+section {
+  display: flex;  /* 激活 Flexbox */
+  gap: 1rem;    /* 横向排列 */
+  overflow-x: auto; /* allows horizontal scroll *//* 超出时水平滚动 */
+  padding: 2rem 1em;   /* ← 左右加大内边距 */
+  scroll-snap-type: x mandatory; /* LevelUp: scroll snap */ /* 平滑滚动对齐 */
+  scroll-behavior: smooth;
+  justify-content: center;
+}
+
+section > div {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  flex: 0 0 280px; /* fixed width for horizontal scroll */
+  padding: 1.25rem;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-snap-align: start;
+  /* 统一内边距 */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+section > div:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+
+
+
+/* Card Content */
+h2 {
+  font-size: 1.25rem;
+  color: #0071c5;
+  margin-bottom: 0.25rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+section img {
+  width: 100%;
+  height: 160px;       /* unified height */
+  object-fit: cover;   /* crop without distortion */
+  border-radius: 6px;
+  /* 关键：增加与卡片边框的间距 */
+  margin-bottom: 0.75rem; /* 只保留下方间距 */
+  box-sizing: border-box;
+}
+
+section p {
+  font-size: 0.95rem;
+  display: none; /* hide by default */
+}
+
+/* Hover reveal */
+section > div:hover p {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Footer note */
+body > p {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  section {
+    flex-direction: column; /* stack vertically */
+    overflow-x: visible;
+  }
+
+  section > div {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+
+/* --- Timeline gutters & centering --- */
+
+/* 让滚动容器左右都有内边距（gutter），默认就能看到留白 */
+section {
+  padding-inline: clamp(24px, 6vw, 96px);
+  justify-content: flex-start;   /* 避免与滚动冲突 */
+}
+
+/* 保险：给第一张和最后一张再加边距，防止仍然贴边 */
+section > div:first-of-type {
+  margin-left: clamp(16px, 4vw, 64px);
+}
+section > div:last-of-type {
+  margin-right: clamp(16px, 4vw, 64px);
+}
+
+/* 若你希望卡片轨道在超宽屏上更居中，可在大屏再加一点限制宽度 */
+@media (min-width: 1400px) {
+  section {
+    max-width: 1200px;
+    margin-inline: auto; /* 让整条时间轴居中 */
+  }
+}
+
+/* Overlay 样式独立写，不要放在 @media 里面 */
+section > div {
+  position: relative;
+  overflow: hidden;   /* 避免超出卡片 */
+  border-radius: 8px; /* 卡片本身的圆角 */
+}
+
+section > div .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 64, 128, 0.9);
+  color: #fff;
+  padding: 1rem;
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 8px;   /* 遮罩层也加圆角 */
+}
+
+section > div:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section > div:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
