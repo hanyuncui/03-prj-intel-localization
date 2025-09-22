@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,14 +17,8 @@
   <!-- Header / Hero Section -->
   <header>
     <div>
-      <!-- Ask Copilot to teach you about `.svg`. 🙂 You'll need to resize the logo with CSS. -->
       <img src="img/intel-header-logo.svg" alt="Intel Logo" />
-      <!-- Main Heading -->
-      <h1>
-        Sustainability Through the Ages
-      </h1>
-
-      <!-- Subheading / Description -->
+      <h1>Sustainability Through the Ages</h1>
       <p>
         Explore Intel's journey through time, discovering how our commitment
         to innovation has shaped a more sustainable future for technology 
@@ -28,7 +28,7 @@
   </header>
 
   <!-- Timeline Cards Section -->
-  <section>
+  <section class="timeline">
 
     <!-- Card 1: 1968 -->
     <div>
@@ -138,6 +138,168 @@
       </div>
     </div>
   </section>
-  <p>Scroll to view timeline | Hover over cards to learn more!</p>
+
+<!-- 3-Column Content Section -->
+<section class="features my-5">
+  <div class="features-container row g-4 text-start">
+    
+    <!-- Column 1 -->
+    <div class="col-md-4">
+      <h2 class="fw-bold">
+        <i class="bi bi-bar-chart-fill me-2"></i>RISE Strategy
+      </h2>
+      <p>
+        Under its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy, 
+        Intel sets ambitious 2030 goals, including driving industry-wide 
+        progress on climate action, water stewardship, and waste reduction.
+      </p>
+      <a href="#" class="learn-more-btn">Learn More</a>
+
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-md-4">
+      <h2 class="fw-bold">
+        <i class="bi bi-globe2 me-2"></i>Commitment
+      </h2>
+      <p>
+        In 2022, Intel pledged to achieve net-zero greenhouse gas emissions 
+        (Scope 1 and 2) by 2040. This commitment builds on decades of 
+        environmental initiatives and partnerships across the semiconductor 
+        industry.
+      </p>
+      <a href="#" class="learn-more-btn">Learn More</a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="col-md-4">
+      <h2 class="fw-bold">
+        <i class="bi bi-droplet me-2"></i>Water & Waste
+      </h2>
+      <p>
+        Intel conserves billions of gallons of water annually and 
+        collaborates with local communities to restore watersheds.
+        Intel also upcycles and recycles materials to reduce waste and 
+        advance a circular economy.
+      </p>
+      <a href="#" class="learn-more-btn">Learn More</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Subscription Form (Full-Width White Background) -->
+<section class="subscription-section">
+  <div class="container text-center py-5">
+    <h2 class="mb-4 text-dark">
+      <i class="bi bi-envelope-fill me-2"></i>
+      Subscribe to our Sustainability Newsletter
+    </h2>
+    <form class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-10 d-flex">
+        <input 
+          type="email" 
+          class="form-control" 
+          placeholder="Enter your email address" 
+          required 
+          aria-label="Email address">
+        <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#subscribeModal">
+          Subscribe
+        </button>
+
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4 mt-5">
+  <p class="mb-0">&copy; 2025 Intel Corporation. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="subscribeModalLabel">Subscription Successful</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        🎉 Thank you for subscribing to Intel’s Sustainability Newsletter!  
+        You’ll receive updates straight to your inbox.
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+function applyDirection() {
+  const html = document.documentElement;
+  const lang = html.lang;
+
+  const featuresRow = document.querySelector(".features .row");
+
+  if (["ar", "he", "fa", "ur"].includes(lang)) {
+    html.setAttribute("dir", "rtl");
+
+    // --- 让三列区块右对齐 ---
+    if (featuresRow) {
+      featuresRow.classList.remove("text-start");
+      featuresRow.classList.add("text-end");
+    }
+
+    // 表单按钮 RTL → 左边
+    const box = document.getElementById("subscription-box");
+    if (box) {
+      box.classList.add("flex-row-reverse");
+      box.querySelector("button").classList.remove("ms-2");
+      box.querySelector("button").classList.add("me-2");
+    }
+
+  } else {
+    html.setAttribute("dir", "ltr");
+
+    // --- 恢复为左对齐 ---
+    if (featuresRow) {
+      featuresRow.classList.remove("text-end");
+      featuresRow.classList.add("text-start");
+    }
+
+    // 表单按钮 LTR → 右边
+    const box = document.getElementById("subscription-box");
+    if (box) {
+      box.classList.remove("flex-row-reverse");
+      box.querySelector("button").classList.remove("me-2");
+      box.querySelector("button").classList.add("ms-2");
+    }
+  }
+}
+
+  // 初始运行
+  applyDirection();
+
+  // 监控 lang 属性变化（Google Translate 会改 <html lang>）
+  const observer = new MutationObserver(applyDirection);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+</script>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

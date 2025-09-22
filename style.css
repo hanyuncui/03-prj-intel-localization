@@ -56,17 +56,17 @@ header p {
 /* ========================
    Timeline Section
 ======================== */
-section {
+.timeline {
   display: flex;
   gap: 1rem;
-  overflow-x: auto;           /* horizontal scroll on large screens */
+  overflow-x: auto;           /* horizontal scroll */
   padding: 2rem 1rem;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   justify-content: flex-start;
 }
 
-section > div {
+.timeline > div {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -83,7 +83,7 @@ section > div {
   overflow: hidden;           /* keeps overlay within rounded corners */
 }
 
-section > div:hover {
+.timeline > div:hover {
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
@@ -102,7 +102,7 @@ h3 {
   margin-bottom: 0.75rem;
 }
 
-section img {
+.timeline img {
   width: 100%;
   height: 160px;
   object-fit: cover;
@@ -110,7 +110,7 @@ section img {
   margin-bottom: 0.75rem;
 }
 
-section p {
+.timeline p {
   font-size: 0.95rem;
   display: none; /* fallback if overlay not used */
 }
@@ -118,7 +118,7 @@ section p {
 /* ========================
    Overlay (hover reveal)
 ======================== */
-section > div .overlay {
+.timeline > div .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 64, 128, 0.9);
@@ -135,7 +135,7 @@ section > div .overlay {
   border-radius: 8px;   /* match card corners */
 }
 
-section > div:hover .overlay {
+.timeline > div:hover .overlay {
   opacity: 1;
   transform: translateY(0);
 }
@@ -154,12 +154,12 @@ body > p {
    Responsive Design
 ======================== */
 @media (max-width: 768px) {
-  section {
+  .timeline {
     flex-direction: column;   /* stack vertically */
     overflow-x: visible;
   }
 
-  section > div {
+  .timeline > div {
     flex: 1 1 auto;
     width: 100%;
   }
@@ -169,10 +169,10 @@ body > p {
    Scroll Gutters (Desktop Only)
 ======================== */
 @media (min-width: 769px) {
-  section > div:first-of-type {
+  .timeline > div:first-of-type {
     margin-left: clamp(16px, 4vw, 64px);
   }
-  section > div:last-of-type {
+  .timeline > div:last-of-type {
     margin-right: clamp(16px, 4vw, 64px);
   }
 }
@@ -181,8 +181,87 @@ body > p {
    Ultra-wide Centering
 ======================== */
 @media (min-width: 1400px) {
-  section {
+  .timeline {
     max-width: 1200px;
     margin-inline: auto;
   }
 }
+
+.features h2 {
+  color: #000 !important; /* 强制黑色 */
+}
+
+
+.features p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: left; /* 英文左对齐，如果是阿拉伯语会自动右对齐 */
+}
+
+.features h2 {
+  color: #000 !important;
+}
+
+/* Subscription Section */
+.subscription-section {
+  background-color: #fff;  /* full-width white background */
+  width: 100%;
+}
+
+.subscription-section .container {
+  max-width: 1200px;       /* same as timeline/features */
+  margin: 0 auto;
+}
+
+.subscription-section h2 {
+  font-size: 1.5rem;
+}
+
+.subscription-section form {
+  margin-top: 1.5rem;
+}
+
+
+.features-container {
+  max-width: 1200px;   /* same as timeline */
+  margin-inline: auto; /* center horizontally */
+  padding: 0 1rem;     /* same gutter as timeline */
+}
+
+/* ========================
+   Learn More button 修正
+======================== */
+.learn-more-btn {
+  border: 1px solid #0071c5;
+  padding: 0.25rem 0.75rem;   /* 更紧凑的按钮大小 */
+  font-size: 0.9rem;
+  border-radius: 4px;
+  background: transparent;
+  color: #0071c5;
+  display: inline-block;      /* 只包裹文字宽度 */
+  margin-top: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;      /* 去掉下划线 */
+}
+
+.learn-more-btn:hover {
+  background: #0071c5;
+  color: #fff;
+}
+
+/* LTR → 按钮和文字左对齐 */
+html[dir="ltr"] .learn-more-btn {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* RTL → 按钮和文字右对齐 */
+html[dir="rtl"] .learn-more-btn {
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+
